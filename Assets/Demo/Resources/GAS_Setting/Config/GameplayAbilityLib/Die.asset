@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d763af469c524557946c477b9bea3a46, type: 3}
   m_Name: Die
   m_EditorClassIdentifier: 
-  UniqueName: Die
   Description: "\u6B7B\u4EA1"
+  UniqueName: Die
   Cost: {fileID: 0}
   Cooldown: {fileID: 0}
   CooldownTime: 0
-  AssetTag: []
+  AssetTags:
+  - _name: Ability.Die
+    _hashCode: 265453460
+    _shortName: Die
+    _ancestorHashCodes: b84ed1e0
+    _ancestorNames:
+    - Ability
   CancelAbilityTags: []
   BlockAbilityTags: []
-  ActivationOwnedTag:
+  ActivationOwnedTags:
   - _name: Event.Dying
     _hashCode: 1569540943
     _shortName: Dying
@@ -35,19 +41,22 @@ MonoBehaviour:
     _ancestorHashCodes: 0276cb27
     _ancestorNames:
     - Event
-  manualEndAbility: 0
+  Speed: 1
+  ManualEndAbility: 0
   FrameCount: 60
   DurationalCues: []
   InstantCues:
   - trackName: "\u52A8\u753B"
     markEvents:
-    - startFrame: 1
+    - isEnabled: 1
+      startFrame: 1
       cues:
       - {fileID: 11400000, guid: d3689ca719882044aab5e9cc5b59e932, type: 2}
   ReleaseGameplayEffect:
   - trackName: "\u6B7B\u4EA1Buff"
     markEvents:
-    - startFrame: 0
+    - isEnabled: 1
+      startFrame: 0
       jsonTargetCatcher:
         Type: GAS.Runtime.CatchSelf
         Data: 

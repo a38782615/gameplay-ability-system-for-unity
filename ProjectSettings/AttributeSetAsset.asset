@@ -23,3 +23,7 @@ MonoBehaviour:
     - POSTURE
     - ATK
     - SPEED
+  - Name: Bullet
+    AttributeNames:
+    - ATK
+    - SPEED

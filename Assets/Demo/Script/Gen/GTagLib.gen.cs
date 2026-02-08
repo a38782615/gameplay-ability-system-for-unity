@@ -30,6 +30,9 @@ namespace GAS.Runtime
         /// <summary>Ability.Move</summary>
         public static GameplayTag Ability_Move { get; } = new("Ability.Move");
 
+        /// <summary>Ability.NormalFire</summary>
+        public static GameplayTag Ability_NormalFire { get; } = new("Ability.NormalFire");
+
         /// <summary>Ban</summary>
         public static GameplayTag Ban { get; } = new("Ban");
 
@@ -117,6 +120,7 @@ namespace GAS.Runtime
             ["Ability.Dodge"] = Ability_Dodge,
             ["Ability.Jump"] = Ability_Jump,
             ["Ability.Move"] = Ability_Move,
+            ["Ability.NormalFire"] = Ability_NormalFire,
             ["Ban"] = Ban,
             ["Ban.Motion"] = Ban_Motion,
             ["CD"] = CD,

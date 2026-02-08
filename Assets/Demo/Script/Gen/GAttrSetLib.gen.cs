@@ -8,6 +8,70 @@ using System.Collections.Generic;
 
 namespace GAS.Runtime
 {
+    public class AS_Bullet : AttributeSet
+    {
+        #region ATK
+
+        /// <summary>攻击力</summary>
+        public AttributeBase ATK { get; } = new("AS_Bullet", "ATK", 0f, CalculateMode.Stacking, (SupportedOperation)31, float.MinValue, float.MaxValue);
+
+        public void InitATK(float value) => ATK.Init(value);
+        public void SetBaseATK(float value) => ATK.SetBaseValue(value);
+        public void SetMinATK(float value) => ATK.SetMinValue(value);
+        public void SetMaxATK(float value) => ATK.SetMaxValue(value);
+        public void SetMinMaxATK(float min, float max) => ATK.SetMinMaxValue(min, max);
+
+        #endregion ATK
+
+        #region SPEED
+
+        /// <summary>移动速度</summary>
+        public AttributeBase SPEED { get; } = new("AS_Bullet", "SPEED", 0f, CalculateMode.Stacking, (SupportedOperation)31, float.MinValue, float.MaxValue);
+
+        public void InitSPEED(float value) => SPEED.Init(value);
+        public void SetBaseSPEED(float value) => SPEED.SetBaseValue(value);
+        public void SetMinSPEED(float value) => SPEED.SetMinValue(value);
+        public void SetMaxSPEED(float value) => SPEED.SetMaxValue(value);
+        public void SetMinMaxSPEED(float min, float max) => SPEED.SetMinMaxValue(min, max);
+
+        #endregion SPEED
+
+        public override AttributeBase this[string key]
+        {
+            get
+            {
+                switch (key)
+                {
+                    case "ATK":
+                        return ATK;
+                    case "SPEED":
+                        return SPEED;
+                }
+
+                return null;
+            }
+        }
+
+        public override string[] AttributeNames { get; } =
+        {
+            "ATK",
+            "SPEED",
+        };
+
+        public override void SetOwner(AbilitySystemComponent owner)
+        {
+            _owner = owner;
+            ATK.SetOwner(owner);
+            SPEED.SetOwner(owner);
+        }
+
+        public static class Lookup
+        {
+            public const string ATK = "AS_Bullet.ATK";
+            public const string SPEED = "AS_Bullet.SPEED";
+        }
+    }
+
     public class AS_Fight : AttributeSet
     {
         #region ATK
@@ -149,11 +213,13 @@ namespace GAS.Runtime
         public static readonly IReadOnlyDictionary<string, Type> AttrSetTypeDict = new Dictionary<string, Type>
         {
             { "Fight", typeof(AS_Fight) },
+            { "Bullet", typeof(AS_Bullet) },
         };
 
         public static readonly IReadOnlyDictionary<Type, string> TypeToName = new Dictionary<Type, string>
         {
             { typeof(AS_Fight), nameof(AS_Fight) },
+            { typeof(AS_Bullet), nameof(AS_Bullet) },
         };
 
         public static readonly IReadOnlyList<string> AttributeFullNames = new List<string>
@@ -164,6 +230,8 @@ namespace GAS.Runtime
             "AS_Fight.POSTURE",
             "AS_Fight.ATK",
             "AS_Fight.SPEED",
+            "AS_Bullet.ATK",
+            "AS_Bullet.SPEED",
         };
     }
 }

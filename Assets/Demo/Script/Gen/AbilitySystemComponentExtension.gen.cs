@@ -4,6 +4,8 @@
 ///////////////////////////////////
 
 using System;
+using System.Linq;
+using UnityEngine;
 
 namespace GAS.Runtime
 {
@@ -24,11 +26,19 @@ namespace GAS.Runtime
             return asc.Preset.BaseTags;
         }
 
-        public static void InitWithPreset(this AbilitySystemComponent asc,int level, AbilitySystemComponentPreset preset = null)
+        public static void InitWithPreset(this AbilitySystemComponent asc, int level, AbilitySystemComponentPreset preset = null)
         {
             if (preset != null) asc.SetPreset(preset);
             if (asc.Preset == null) return;
-            asc.Init(asc.PresetBaseTags(), asc.PresetAttributeSetTypes(), asc.Preset.BaseAbilities,level);
+
+#if UNITY_EDITOR
+            if (asc.Preset.BaseAbilities != null && asc.Preset.BaseAbilities.Any(x => x == null))
+            {
+                Debug.LogWarning($"BaseAbilities contains null in preset: {asc.Preset.name}");
+            }
+#endif
+
+            asc.Init(asc.PresetBaseTags(), asc.PresetAttributeSetTypes(), asc.Preset.BaseAbilities, level);
         }
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dd2a6201f04545b5a8b020edcb2690, type: 3}
   m_Name: ASC_Player
   m_EditorClassIdentifier: 
-  Name: "\u73A9\u5BB6\u89D2\u8272"
   Description: 
   AttributeSets:
   - Fight
+  - Bullet
   BaseTags:
   - _name: Faction.Player
     _hashCode: 1030057057
@@ -30,3 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 558f983e070c4a24ca6106a5a4e88b5d, type: 2}
   - {fileID: 11400000, guid: 21f613780369d6b4ba10d1fc5f181f46, type: 2}
   - {fileID: 11400000, guid: 6bad84aec0f9a904c8f08282863cdd78, type: 2}
+  - {fileID: 11400000, guid: 6b2b8c2be22f4f34f83762a5ecc2020b, type: 2}

@@ -28,6 +28,9 @@ MonoBehaviour:
   - _id: 2
     _name: Ability
     _depth: 0
+  - _id: 41
+    _name: NormalFire
+    _depth: 1
   - _id: 37
     _name: Die
     _depth: 1
@@ -138,6 +141,12 @@ MonoBehaviour:
     _shortName: Ability
     _ancestorHashCodes: 
     _ancestorNames: []
+  - _name: Ability.NormalFire
+    _hashCode: -1668315789
+    _shortName: NormalFire
+    _ancestorHashCodes: b84ed1e0
+    _ancestorNames:
+    - Ability
   - _name: Ability.Die
     _hashCode: 265453460
     _shortName: Die

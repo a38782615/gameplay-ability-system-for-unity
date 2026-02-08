@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d763af469c524557946c477b9bea3a46, type: 3}
   m_Name: Defend
   m_EditorClassIdentifier: 
-  UniqueName: Defend
   Description: 
+  UniqueName: Defend
   Cost: {fileID: 0}
   Cooldown: {fileID: 0}
   CooldownTime: 0
-  AssetTag:
+  AssetTags:
   - _name: Ability.Defend
     _hashCode: 465592122
     _shortName: Defend
@@ -37,7 +37,7 @@ MonoBehaviour:
     _shortName: Ability
     _ancestorHashCodes: 
     _ancestorNames: []
-  ActivationOwnedTag: []
+  ActivationOwnedTags: []
   ActivationRequiredTags: []
   ActivationBlockedTags:
   - _name: Event.InAir
@@ -46,19 +46,22 @@ MonoBehaviour:
     _ancestorHashCodes: 0276cb27
     _ancestorNames:
     - Event
-  manualEndAbility: 1
+  Speed: 1
+  ManualEndAbility: 1
   FrameCount: 10
   DurationalCues: []
   InstantCues:
   - trackName: 
     markEvents:
-    - startFrame: 0
+    - isEnabled: 1
+      startFrame: 0
       cues:
       - {fileID: 11400000, guid: 131d5c34b4ba8d14a9c68cc3b1d9382a, type: 2}
   ReleaseGameplayEffect:
   - trackName: 
     markEvents:
-    - startFrame: 0
+    - isEnabled: 1
+      startFrame: 0
       jsonTargetCatcher:
         Type: GAS.Runtime.CatchSelf
         Data: 
@@ -67,7 +70,8 @@ MonoBehaviour:
   BuffGameplayEffects:
   - trackName: BuffGameplayEffect
     clipEvents:
-    - startFrame: 0
+    - isEnabled: 1
+      startFrame: 0
       durationFrame: 10
       buffTarget: 0
       gameplayEffect: {fileID: 11400000, guid: fc81845fcee67d94cb39cd37d5dd6e69, type: 2}

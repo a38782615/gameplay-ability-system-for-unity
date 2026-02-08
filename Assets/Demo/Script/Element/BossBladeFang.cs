@@ -3,14 +3,13 @@ using Demo.Script.UI;
 using EXMaidForUI.Runtime.EXMaid;
 using GAS.Runtime;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Demo.Script.Element
 {
-    public class BossBladeFang:FightUnit
+    public class BossBladeFang : FightUnit
     {
         public const int HpMax = 300;
-        public const int ATK = 20;
+        public const int ATK = 1;
         public const int Speed = 6;
 
         protected override string MoveName => GAbilityLib.Move.Name;
@@ -22,7 +21,7 @@ namespace Demo.Script.Element
 
         [SerializeField] private Player player;
         [SerializeField] private BossCore core;
-        
+
         public BossCore Core => core;
 
 
@@ -30,22 +29,22 @@ namespace Demo.Script.Element
         private bool _outOfPosture;
         private bool _inPhase1;
         public bool ChangingPhase { get; private set; }
-        
+
         public BehaviorTree BT => _bt;
-        
+
         protected override void Awake()
         {
             base.Awake();
             InitAttribute();
             if (player == null) player = FindObjectOfType<Player>();
-            
+
             target = player;
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            
+
             // 更新dead, outOfPosture, inPhase1 三个状态值
             if (_dead != ASC.AttrSet<AS_Fight>().HP.CurrentValue <= 0)
             {
@@ -54,15 +53,15 @@ namespace Demo.Script.Element
                 _bt.DisableBehavior();
                 _bt.EnableBehavior();
             }
-            
-            if( _outOfPosture != ASC.HasTag(GTagLib.State_Debuff_LoseBalance))
+
+            if (_outOfPosture != ASC.HasTag(GTagLib.State_Debuff_LoseBalance))
             {
                 _outOfPosture = !_outOfPosture;
                 _bt.SetVariableValue("outOfPosture", ASC.HasTag(GTagLib.State_Debuff_LoseBalance));
                 _bt.DisableBehavior();
                 _bt.EnableBehavior();
             }
-            
+
             if (_inPhase1 != ASC.AttrSet<AS_Fight>().HP.CurrentValue > HpMax / 2)
             {
                 _inPhase1 = !_inPhase1;
@@ -94,7 +93,7 @@ namespace Demo.Script.Element
             ASC.AttrSet<AS_Fight>().HP.UnregisterPreBaseValueChange(OnHpChangePre);
             ASC.AttrSet<AS_Fight>().HP.UnregisterPostBaseValueChange(OnHpChangePost);
         }
-        
+
         public override void InitAttribute()
         {
             ASC.AttrSet<AS_Fight>().InitHP(HpMax);
@@ -107,17 +106,17 @@ namespace Demo.Script.Element
         {
             return ASC.TryActivateAbility(GAbilityLib.BossAttack02.Name);
         }
-        
+
         public bool BeamAttack()
         {
             return ASC.TryActivateAbility(GAbilityLib.BossAttack03.Name);
         }
-        
+
         public bool RoarAttack()
         {
             return ASC.TryActivateAbility(GAbilityLib.BossAttack04.Name);
         }
-        
+
         private float OnPostureChangePre(AttributeBase attr, float newValue)
         {
             return Mathf.Clamp(newValue, 0, PostureMax);

@@ -23,6 +23,9 @@ public class Player : FightUnit
     protected override string DodgeName => GAbilityLib.DodgeStep.Name;
     protected override string DieName => GAbilityLib.Die.Name;
 
+    // 射击能力名称
+    protected string FireName => GAbilityLib.NormalFire.Name;
+
     protected override void Awake()
     {
         base.Awake();
@@ -36,8 +39,10 @@ public class Player : FightUnit
         _inputActionReference.Player.Defend.performed += OnActivateDefend;
         _inputActionReference.Player.Defend.canceled += OnDeactivateDefend;
         _inputActionReference.Player.Dodge.performed += OnDodge;
+        _inputActionReference.Player.Fire.performed += OnFire;
 
         InitAttribute();
+
         // 添加永久耐力自动恢复Buff
         ASC.ApplyGameplayEffectToSelf(new GameplayEffect(GEBuffStaminaRecover));
     }
@@ -63,7 +68,7 @@ public class Player : FightUnit
 
         ASC.AttrSet<AS_Fight>().HP.RegisterPreBaseValueChange(OnHpChangePre);
         ASC.AttrSet<AS_Fight>().HP.RegisterPostBaseValueChange(OnHpChangePost);
-        
+
         ASC.AttrSet<AS_Fight>().POSTURE.RegisterPreBaseValueChange(OnPostureChangePre);
         ASC.AttrSet<AS_Fight>().POSTURE.RegisterPostBaseValueChange(OnPostureChangePost);
     }
@@ -76,19 +81,23 @@ public class Player : FightUnit
 
         ASC.AttrSet<AS_Fight>().HP.UnregisterPreBaseValueChange(OnHpChangePre);
         ASC.AttrSet<AS_Fight>().HP.UnregisterPostBaseValueChange(OnHpChangePost);
-        
+
         ASC.AttrSet<AS_Fight>().POSTURE.UnregisterPreBaseValueChange(OnPostureChangePre);
         ASC.AttrSet<AS_Fight>().POSTURE.UnregisterPostBaseValueChange(OnPostureChangePost);
     }
 
     public override void InitAttribute()
     {
-        ASC.AttrSet<AS_Fight>().InitHP(HpMax);
-        ASC.AttrSet<AS_Fight>().InitMP(MpMax);
-        ASC.AttrSet<AS_Fight>().InitSTAMINA(StaminaMax);
-        ASC.AttrSet<AS_Fight>().InitPOSTURE(0);
-        ASC.AttrSet<AS_Fight>().InitATK(ATK);
-        ASC.AttrSet<AS_Fight>().InitSPEED(Speed);
+        var bulletAst = ASC.AttrSet<AS_Bullet>();
+        bulletAst.InitATK(100f);
+
+        var fightAst = ASC.AttrSet<AS_Fight>();
+        fightAst.InitHP(HpMax);
+        fightAst.InitMP(MpMax);
+        fightAst.InitSTAMINA(StaminaMax);
+        fightAst.InitPOSTURE(0);
+        fightAst.InitATK(ATK);
+        fightAst.InitSPEED(Speed);
     }
 
     private void OnActivateMove(InputAction.CallbackContext context)
@@ -128,6 +137,19 @@ public class Player : FightUnit
         Dodge();
     }
 
+    private void OnFire(InputAction.CallbackContext context)
+    {
+        Fire();
+    }
+
+    /// <summary>
+    /// 射击
+    /// </summary>
+    public bool Fire()
+    {
+        return ASC.TryActivateAbility(FireName);
+    }
+
     private float OnStaminaChangePre(AttributeBase attr, float newValue)
     {
         return Mathf.Clamp(newValue, 0, StaminaMax);
@@ -154,12 +176,12 @@ public class Player : FightUnit
             OnDie();
         }
     }
-    
+
     private float OnPostureChangePre(AttributeBase attr, float newValue)
     {
         return Mathf.Clamp(newValue, 0, PostureMax);
     }
-    
+
     private void OnPostureChangePost(AttributeBase attr, float oldValue, float newValue)
     {
         Debug.Log($"Posture changed from {oldValue} to {newValue}");

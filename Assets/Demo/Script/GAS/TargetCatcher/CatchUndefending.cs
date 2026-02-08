@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Demo.Script.GAS.TargetCatcher
 {
     [Serializable]
-    public class CatchUndefending : CatchAreaBase 
+    public class CatchUndefending : CatchAreaBase
     {
         public Vector2 offset;
         public float rotation;
@@ -64,11 +64,11 @@ namespace Demo.Script.GAS.TargetCatcher
                 }
             }
         }
-    
+
         //         protected List<AbilitySystemComponent> CatchDefaultTargets(AbilitySystemComponent mainTarget)
-//         {
-//             return base.CatchTargets(mainTarget);
-//         }
+        //         {
+        //             return base.CatchTargets(mainTarget);
+        //         }
 #if UNITY_EDITOR
         public override void OnEditorPreview(GameObject previewObject)
         {
@@ -97,39 +97,52 @@ namespace Demo.Script.GAS.TargetCatcher
         }
 #endif
     }
-//         public override List<AbilitySystemComponent> CatchTargets(AbilitySystemComponent mainTarget)
-//         {
-//             var targets = CatchDefaultTargets(mainTarget);
-//             var result = new List<AbilitySystemComponent>();
-//             foreach (var target in targets)
-//                 if (!IsDefendSuccess(target))
-//                     result.Add(target);
-//             return result;
-//         }
-//
+    //         public override List<AbilitySystemComponent> CatchTargets(AbilitySystemComponent mainTarget)
+    //         {
+    //             var targets = CatchDefaultTargets(mainTarget);
+    //             var result = new List<AbilitySystemComponent>();
+    //             foreach (var target in targets)
+    //                 if (!IsDefendSuccess(target))
+    //                     result.Add(target);
+    //             return result;
+    //         }
+    //
 
-//
+    //
 
-//         
+    //         
 
 #if UNITY_EDITOR
     public class CatchUndefendingInspector : TargetCatcherInspector<CatchUndefending>
     {
-        [BoxGroup] [Delayed] [OnValueChanged("OnCatcherChanged")]
+        [BoxGroup]
+        [Delayed]
+        [OnValueChanged("OnCatcherChanged")]
         public Vector2 Offset;
-        
-        [BoxGroup] [Delayed] [OnValueChanged("OnCatcherChanged")]
+
+        [BoxGroup]
+        [Delayed]
+        [OnValueChanged("OnCatcherChanged")]
         public Vector2 Size;
-        
-        [BoxGroup] [Delayed] [LabelText("Rotation")] [OnValueChanged("OnCatcherChanged")]
+
+        [BoxGroup]
+        [Delayed]
+        [LabelText("Rotation")]
+        [OnValueChanged("OnCatcherChanged")]
         public float Rotation;
-        
-        [BoxGroup] [Delayed] [LabelText("Detect Layer")] [OnValueChanged("OnCatcherChanged")]
+
+        [BoxGroup]
+        [Delayed]
+        [LabelText("Detect Layer")]
+        [OnValueChanged("OnCatcherChanged")]
         public LayerMask Layer;
-        
-        [BoxGroup] [Delayed] [LabelText("Center Type")] [OnValueChanged("OnCatcherChanged")]
+
+        [BoxGroup]
+        [Delayed]
+        [LabelText("Center Type")]
+        [OnValueChanged("OnCatcherChanged")]
         public EffectCenterType CenterType;
-        
+
         public CatchUndefendingInspector(CatchUndefending targetCatcherBase) : base(targetCatcherBase)
         {
             Offset = targetCatcherBase.offset;
@@ -138,7 +151,7 @@ namespace Demo.Script.GAS.TargetCatcher
             Layer = targetCatcherBase.checkLayer;
             CenterType = targetCatcherBase.centerType;
         }
-        
+
         public void OnCatcherChanged()
         {
             _targetCatcher.offset = Offset;

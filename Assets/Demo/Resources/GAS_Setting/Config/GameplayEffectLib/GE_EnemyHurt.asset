@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9395a0be3e547f48bd1c8320edc6c58, type: 3}
   m_Name: GE_EnemyHurt
   m_EditorClassIdentifier: 
-  Name: "\u73A9\u5BB6\u7684\u666E\u901A\u653B\u51FB\u6548\u679C"
   Description: 
   DurationPolicy: 1
   Duration: 0
@@ -20,6 +19,7 @@ MonoBehaviour:
   PeriodExecution: {fileID: 0}
   Stacking:
     stackingType: 0
+    stackingCodeName: 
     limitCount: 0
     durationRefreshPolicy: 0
     periodResetPolicy: 0
@@ -56,3 +56,5 @@ MonoBehaviour:
   CueOnRemove: []
   CueOnActivate: []
   CueOnDeactivate: []
+  SnapshotPolicy: 0
+  SpecifiedSnapshotConfigs: []

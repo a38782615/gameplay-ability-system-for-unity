@@ -17,6 +17,8 @@ namespace GAS.Runtime
             public Type AbilityClassType;
         }
 
+        public static AbilityInfo Attack = new AbilityInfo { Name = "Attack", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/Attack.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
+
         public static AbilityInfo BossAttack01 = new AbilityInfo { Name = "BossAttack01", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Boss/BossAttack01.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
 
         public static AbilityInfo BossAttack02 = new AbilityInfo { Name = "BossAttack02", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Boss/BossAttack02.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
@@ -27,32 +29,33 @@ namespace GAS.Runtime
 
         public static AbilityInfo BossDie = new AbilityInfo { Name = "BossDie", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Boss/BossDie.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
 
+        public static AbilityInfo Defend = new AbilityInfo { Name = "Defend", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/Defend.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
+
         public static AbilityInfo Die = new AbilityInfo { Name = "Die", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Die.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
+
+        public static AbilityInfo DodgeStep = new AbilityInfo { Name = "DodgeStep", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/DodgeStep.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
 
         public static AbilityInfo Jump = new AbilityInfo { Name = "Jump", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Jump.asset",AbilityClassType = typeof(GAS.Runtime.Jump) };
 
         public static AbilityInfo Move = new AbilityInfo { Name = "Move", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Move.asset",AbilityClassType = typeof(GAS.Runtime.Move) };
 
-        public static AbilityInfo Attack = new AbilityInfo { Name = "Attack", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/Attack.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
-
-        public static AbilityInfo Defend = new AbilityInfo { Name = "Defend", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/Defend.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
-
-        public static AbilityInfo DodgeStep = new AbilityInfo { Name = "DodgeStep", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/DodgeStep.asset",AbilityClassType = typeof(GAS.Runtime.TimelineAbility) };
+        public static AbilityInfo NormalFire = new AbilityInfo { Name = "NormalFire", AssetPath = "Assets/Demo/Resources/GAS_Setting/Config/GameplayAbilityLib/Player/NormalFire.asset",AbilityClassType = typeof(GAS.Runtime.NormalFire) };
 
 
         public static Dictionary<string, AbilityInfo> AbilityMap = new Dictionary<string, AbilityInfo>
         {
+            ["Attack"] = Attack,
             ["BossAttack01"] = BossAttack01,
             ["BossAttack02"] = BossAttack02,
             ["BossAttack03"] = BossAttack03,
             ["BossAttack04"] = BossAttack04,
             ["BossDie"] = BossDie,
+            ["Defend"] = Defend,
             ["Die"] = Die,
+            ["DodgeStep"] = DodgeStep,
             ["Jump"] = Jump,
             ["Move"] = Move,
-            ["Attack"] = Attack,
-            ["Defend"] = Defend,
-            ["DodgeStep"] = DodgeStep,
+            ["NormalFire"] = NormalFire,
         };
     }
 }
